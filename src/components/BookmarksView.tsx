@@ -10,6 +10,7 @@ import { FiFolder, FiSearch, FiExternalLink, FiMenu, FiX, FiUpload, FiHome } fro
 import { filterByQuery } from "@/lib/function";
 
 export default function BookmarksView({ bookmarks }: { bookmarks: Bookmark[] }) {
+  console.log('bookmarks', bookmarks)
   const [selected, setSelected] = useState<string | undefined>(undefined);
   const [showSidebar, setShowSidebar] = useState(false);
   const [query, setQuery] = useState<string>()

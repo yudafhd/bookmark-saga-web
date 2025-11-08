@@ -1,7 +1,10 @@
-import SignInButton from "@/components/SignInButton";
 import { auth } from "@/auth";
+import SignInButton from "@/components/SignInButton";
 import { readBookmarks } from "@/lib/drive";
 import BookmarksView from "@/components/BookmarksView";
+
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function Home() {
   const session = await auth();
@@ -34,7 +37,12 @@ export default async function Home() {
     );
   }
 
-  const bookmarks = await readBookmarks(accessToken);
+  let bookmarks = [] as Awaited<ReturnType<typeof readBookmarks>>;
+  try {
+    bookmarks = await readBookmarks(accessToken);
+  } catch (e) {
+    console.error("Failed to read bookmarks from Drive AppData", e);
+  }
 
   return (
     <div className="min-h-[100svh] min-w-screen bg-gradient-to-b from-[#0e1525] to-[#0a0f1e] text-zinc-100">
