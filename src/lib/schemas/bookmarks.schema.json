@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bookmark-saga/schema/bookmarks.schema.json",
+  "title": "BookmarkSagaExport",
+  "type": "object",
+  "required": ["version", "exportedAt", "folders", "folderItems"],
+  "properties": {
+    "version": { "type": "integer", "minimum": 1 },
+    "exportedAt": { "type": "string", "format": "date-time" },
+    "folders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "parentId"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "parentId": { "type": ["string", "null"] }
+        },
+        "additionalProperties": false
+      }
+    },
+    "folderItems": {
+      "type": "object",
+      "propertyNames": { "type": "string" },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "required": ["url", "title", "savedAt"],
+          "properties": {
+            "url": { "type": "string", "format": "uri" },
+            "title": { "type": "string" },
+            "faviconUrl": { "type": ["string", "null"], "format": "uri" },
+            "savedAt": { "type": "integer" },
+            "visitTime": { "type": ["integer", "null"] }
+          },
+          "additionalProperties": false
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
