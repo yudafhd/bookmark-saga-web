@@ -10,7 +10,7 @@ export default async function Home() {
   if (!accessToken) {
     return (
       <div className="min-h-screen bg-gradient-to-b from-[#0e1525] to-[#0a0f1e] font-sans text-zinc-100 flex items-center justify-center px-4 sm:px-8">
-        <main className="w-full max-w-6xl flex flex-col items-center gap-8 sm:gap-10 py-16 sm:py-24 text-center">
+        <main className="w-full max-w-6xl flex flex-col items-center gap-2 md:gap-10 py-16 sm:py-24 text-center">
           <div className="relative inline-block">
             <h1 className="text-[42px] sm:text-[64px] md:text-[88px] lg:text-[120px] font-extrabold leading-none tracking-tight text-zinc-200">
               Bookmark
