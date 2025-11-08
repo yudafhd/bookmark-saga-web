@@ -1,0 +1,17 @@
+{
+  "name": "Bookmark Saga",
+  "short_name": "Bookmarks",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e1525",
+  "theme_color": "#0e1525",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 24x24 32x32 48x48 64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
+
