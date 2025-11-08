@@ -1,5 +1,5 @@
 import type { Bookmark } from "./drive";
-import schema from "./schemas/bookmarks.schema.json" assert { type: "json" };
+// Schema import removed to avoid optional Ajv dependency at build time.
 
 export type ExportFolder = {
   id: string;
@@ -33,15 +33,8 @@ export function isExportData(data: unknown): data is ExportData {
 }
 
 export async function validateExportJSON(data: unknown): Promise<{ valid: boolean; errors?: string[] }> {
-  try {
-    const { default: Ajv } = await import("ajv");
-    const ajv = new Ajv();
-    const validate = ajv.compile(schema as unknown as object);
-    const valid = validate(data);
-    return { valid: Boolean(valid), errors: validate.errors?.map((e) => e.message ?? "Invalid data") };
-  } catch {
-    return { valid: isExportData(data) };
-  }
+  const valid = isExportData(data);
+  return { valid, errors: valid ? undefined : ["Invalid export structure"] };
 }
 
 export function extractBookmarksFromExport(data: ExportData): Bookmark[] {
